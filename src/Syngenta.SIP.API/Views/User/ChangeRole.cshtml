@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.title = "Change Role";
+}
+
+
+<div class="change text-center">
+    <h2>Change Role(@User.Identity.Name)</h2>
+</div>
+    <div class="flex">
+        <span>Change user Role</span>
+        <span>@Html.DropDownList("Country", new SelectList(ViewBag.Countries, "Id", "Name"), new { @id = "Country" })</span>
+        <span>@Html.DropDownList("BussinessUnit", new SelectList(ViewBag.BussinessUnit, "Id", "Name"),new { @id="BU" })</span>
+        <span>@Html.DropDownList("Role", new SelectList(ViewBag.Roles, "Id", "Name"), new { @id = "Role" })</span>
+        <span><button class="green_button small" id="changerole">submit</button></span>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#changerole").click(function () {
+            var bussinessid = $('#BU').val();
+            var countryid = $('#Country').val();
+            var roleid = $('#Role').val();
+            if (roleid == '')
+            {
+                alert("Please select a role");
+                return;                
+            }            
+            $.ajax({
+                url: '@Url.Action("SaveUserRole", "User")',
+                dataType: "json",
+                type: "POST",
+                cache: false,
+                data: { bussinessunitid: bussinessid, countryid: countryid, roleid: roleid },
+                success: function (data) {
+                    if (data.success) {
+                        alert(data.message);
+                    }
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        });
+
+        $("#BU, #Country").on("change", function () {
+            var bussinessid = $('#BU').val();
+            var countryid = $('#Country').val();
+            $.ajax({
+                url: '@Url.Action("GetRoles", "User")',
+                dataType: "json",
+                type: "POST",
+                cache: false,
+                data: { countryId: countryid, businessUnitId: bussinessid },
+                success: function (data) {
+                    $("#Role").html("");
+                    $("#Role").append
+                        ($('<option></option>').val('').html("--Select--"));
+                    $.each(data, function (i, roles) {
+                        $("#Role").append
+                            ($('<option></option>').val(roles.Id).html(roles.Name));
+                    })
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        });
+
+        $("#BU").trigger("change");
+    });
+</script>

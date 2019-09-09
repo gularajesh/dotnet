@@ -1,0 +1,113 @@
+﻿@model Syngenta.SIP.Models.CountryModel
+@{
+    ViewBag.title = "Plan";
+}
+@Html.Partial("_LayoutManageData")
+
+<div id="divPlan">
+
+    @using (Ajax.BeginForm("UploadPlan", new { Controller = "Data" }, new AjaxOptions()
+    {
+        InsertionMode = InsertionMode.ReplaceWith,
+        HttpMethod = "POST",
+        UpdateTargetId = "divPlan",
+        LoadingElementId = "progress"
+
+    }, new { enctype = "multipart/form-data" }))
+    {
+        <div class="text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group padding">
+                        <label class="required" for="fileInput">File (Only.xlsx and less than 5 MB)</label>
+                        <div class="flex">
+                            <input type="file" id="fileInput" name="fileInput" required
+                                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                            <input type="submit" id="UploadBtn" class="upload_button green_button small" value="Upload" />
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="errorDiv" class="required_v1 text-danger" style="word-wrap:break-word;"></div>
+            <div class="errorMessages">
+                @ViewBag.Message
+            </div>
+        </div>
+
+    }
+
+</div>
+<div id="progress" class="modal">
+    <div class="center">
+        <img src="~/Content/Images/loader.gif" style="width:100px" />
+    </div>
+</div>
+<div id="divDownloadPlan">
+    @using (Ajax.BeginForm("DownloadPlan", new { Controller = "Data" }, new AjaxOptions()
+    {
+        InsertionMode = InsertionMode.ReplaceWith,
+        HttpMethod = "POST",
+        UpdateTargetId = "divDownloadPlan"
+    }, new { enctype = "multipart/form-data" }))
+    {
+        <div class="text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group padding">
+                        <div class="flex">
+                            @*<span>@Html.DropDownListFor(m => m.Year, Model.Years, "Years", new { @id = "year" })</span>*@
+                            <span>@Html.DropDownListFor(m => m.Id, ViewBag.Countries as SelectList, "All countries", new { @id = "countryId" })</span>  &nbsp;  &nbsp;  &nbsp;
+                            <input type="submit" id="UploadBtn" class="upload_button green_button small" value="Download" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    <div class="flex margin_top_20">
+        @*@Html.ActionLink("Download", "DownloadPlan", "Data", new { data = Model, target = "_base", @class = "upload_button green_button small" })*@
+    </div>
+
+</div>
+
+
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+<script>
+                //function OnSuccess(response) {
+                //    debugger
+                //    // alert(response);
+                //}
+                //function OnFailure(response) {
+                //    alert("Error occured.");
+                //}
+</script>
+<style>
+    .modal {
+        position: fixed;
+        z-index: 999;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        background-color: Black;
+        filter: alpha(opacity=60);
+        opacity: 0.6;
+        display: none;
+    }
+
+    .centerimg {
+        height: 128px;
+        width: 128px;
+    }
+
+    .center {
+        display: block;
+        margin-left: 900px;
+        margin-right: 700px;
+        width: 50%;
+        margin-top: 500px;
+    }
+</style>
+

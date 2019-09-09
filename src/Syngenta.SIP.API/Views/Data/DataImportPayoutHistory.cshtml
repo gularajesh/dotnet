@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutManageData.cshtml";
+    ViewBag.Title = "DataImportPayoutHistory";
+}
+
+<div class="text-center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group padding">
+                <label class="required" for="fileInput">File (Only.xlsx and less than 5 MB)</label>
+                <div class="flex">
+                    <input type="file" id="fileInput" required
+                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                    <input type="button" id="UploadBtn" class="upload_button green_button small" value="Upload" />
+                </div>
+            </div>
+        </div>
+        <div id="errorDiv" class="required_v1 text-danger" style="word-wrap:break-word;"></div>
+        <div class="errorMessages"></div>
+    </div>
+</div>
+<script>
+        var isUploading = false;
+        $("#UploadBtn").click(function () {
+            var formData = new FormData();
+            var totalFiles = document.getElementById("fileInput").files.length;
+            $("#errorDiv").html('');
+            if (!isUploading) {
+                isUploading = true;
+                for (var i = 0; i < totalFiles; i++) {
+                    var file = document.getElementById("fileInput").files[i];
+
+                    formData.append("fileInput", file);
+                }
+                formData.append('headerRow', $('#jsHeaderRowNumber').val())
+                $("#errorDiv").html('');
+
+
+                $('.holder').show();
+                $('#UploadBtn').prop('value', 'Uploading...');
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("UploadPayoutHistory", "Data")',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        response.forEach(function (response) {
+                            $(".errorMessages").append("<p>" + response.Message + "</p>")
+                        });
+                        $('#UploadBtn').prop('value', 'Upload');
+                        //setTimeout(function () {
+                        //    $('#fileInput').val();
+                        //}, 2000);
+
+
+                    },
+                    error: function (error) {
+                        error.forEach(function (data) {
+                            $(".errorMessages").append("<p>" + data + "</p>")
+                        })
+                        $('#UploadBtn').prop('value', 'Upload');
+                        $('.holder').hide();
+                        //setTimeout(function () {
+                        //    location.reload();
+                        //}, 2000);
+                    }
+
+                });
+            }
+
+    });
+
+</script>

@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syngenta.SIP.Implementation.Repository", "Syngenta.SIP.Implementation.Repository\Syngenta.SIP.Implementation.Repository.csproj", "{5270FCE7-D7DB-46F2-9EBD-25FD42F546FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syngenta.SIP.Implementation.Service", "Syngenta.SIP.Implementation.Service\Syngenta.SIP.Implementation.Service.csproj", "{78AC43CD-9301-45CF-80E9-327C0E2B762C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syngenta.SIP.Interface.Repository", "Syngenta.SIP.Interface.Repository\Syngenta.SIP.Interface.Repository.csproj", "{5C73889E-4A86-45EA-AF36-3433F16C6FD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syngenta.SIP.Interface.Service", "Syngenta.SIP.Interface.Service\Syngenta.SIP.Interface.Service.csproj", "{9CC05ECC-E2EA-4F0E-901D-751834E1CA9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syngenta.SIP.API", "Syngenta.SIP.API\Syngenta.SIP.API.csproj", "{65E69D9E-037E-44EA-95A8-F3DC7059933B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syngenta.SIP.Model", "Syngenta.SIP.Model\Syngenta.SIP.Model.csproj", "{3E72B8EA-7BE7-4F16-BD0F-6F5B3A6C03DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{BF9C3381-CC14-4F6A-BF12-35E70EC90B3C}"
+	ProjectSection(SolutionItems) = preProject
+		SQL\01 SyngentaSIPContextDatabase.sql = SQL\01 SyngentaSIPContextDatabase.sql
+		SQL\01.01 MigrationScripts.sql = SQL\01.01 MigrationScripts.sql
+		SQL\01.02 MigrationScripts.sql = SQL\01.02 MigrationScripts.sql
+		SQL\02 TableTypes.sql = SQL\02 TableTypes.sql
+		SQL\03 StoredProcedures.sql = SQL\03 StoredProcedures.sql
+		SQL\04 SyngentaSIPContextMasterData.sql = SQL\04 SyngentaSIPContextMasterData.sql
+		SQL\SyngentaSIPSecureDataBase.sql = SQL\SyngentaSIPSecureDataBase.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataImport", "DataImport", "{27691D7A-7326-4DB5-9789-6D8F56E22D61}"
+	ProjectSection(SolutionItems) = preProject
+		SQL\DataImport\01 ImportCountry.sql = SQL\DataImport\01 ImportCountry.sql
+		SQL\DataImport\02 ImportPayoutCurve.sql = SQL\DataImport\02 ImportPayoutCurve.sql
+		SQL\DataImport\03 ImportPayOutPercentage.sql = SQL\DataImport\03 ImportPayOutPercentage.sql
+		SQL\DataImport\04 ImportRole.sql = SQL\DataImport\04 ImportRole.sql
+		SQL\DataImport\05 ImportPlanMeasure.sql = SQL\DataImport\05 ImportPlanMeasure.sql
+		SQL\DataImport\06 ImportUser.sql = SQL\DataImport\06 ImportUser.sql
+		SQL\DataImport\07 ImportUserPayoutHistory.sql = SQL\DataImport\07 ImportUserPayoutHistory.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5270FCE7-D7DB-46F2-9EBD-25FD42F546FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5270FCE7-D7DB-46F2-9EBD-25FD42F546FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5270FCE7-D7DB-46F2-9EBD-25FD42F546FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5270FCE7-D7DB-46F2-9EBD-25FD42F546FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78AC43CD-9301-45CF-80E9-327C0E2B762C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78AC43CD-9301-45CF-80E9-327C0E2B762C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78AC43CD-9301-45CF-80E9-327C0E2B762C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78AC43CD-9301-45CF-80E9-327C0E2B762C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C73889E-4A86-45EA-AF36-3433F16C6FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C73889E-4A86-45EA-AF36-3433F16C6FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C73889E-4A86-45EA-AF36-3433F16C6FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C73889E-4A86-45EA-AF36-3433F16C6FD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC05ECC-E2EA-4F0E-901D-751834E1CA9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC05ECC-E2EA-4F0E-901D-751834E1CA9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC05ECC-E2EA-4F0E-901D-751834E1CA9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC05ECC-E2EA-4F0E-901D-751834E1CA9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65E69D9E-037E-44EA-95A8-F3DC7059933B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E69D9E-037E-44EA-95A8-F3DC7059933B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E69D9E-037E-44EA-95A8-F3DC7059933B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E69D9E-037E-44EA-95A8-F3DC7059933B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E72B8EA-7BE7-4F16-BD0F-6F5B3A6C03DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E72B8EA-7BE7-4F16-BD0F-6F5B3A6C03DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E72B8EA-7BE7-4F16-BD0F-6F5B3A6C03DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E72B8EA-7BE7-4F16-BD0F-6F5B3A6C03DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27691D7A-7326-4DB5-9789-6D8F56E22D61} = {BF9C3381-CC14-4F6A-BF12-35E70EC90B3C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {061EDE29-FC6E-47F6-ACA9-AADAE459B449}
+	EndGlobalSection
+EndGlobal

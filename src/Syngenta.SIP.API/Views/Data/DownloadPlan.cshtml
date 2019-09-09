@@ -1,0 +1,15 @@
+﻿
+    @{
+        Layout = "~/Views/Shared/_LayoutManageData.cshtml";
+        ViewBag.title = "Download Plan";
+    }
+
+<div class="text-center padding">
+    <span>Select any country to download its Plan Data</span>
+    <form action="@Url.Action("DownloadPlanData", "Data")" method="post">
+        <span>@Html.DropDownList("countryId", ViewBag.Countries as SelectList, "All countries", new { @id = "countryId" })</span>
+        <input id="btnSubmit" class="green_button small" type="submit" value="Export" />
+    </form>
+</div>
+
+

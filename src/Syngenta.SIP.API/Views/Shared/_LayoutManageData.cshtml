@@ -1,0 +1,56 @@
+﻿<div class="row subheader_fixed">
+    <div class="row">
+        <div class="pull-left col-xs-5 no-padding">
+            @{
+                string controllerName = ViewContext.RouteData.Values["controller"] as string;
+                string actionName = ViewContext.RouteData.Values["action"] as string;
+                System.Security.Claims.ClaimsIdentity claimsIdentity = User.Identity as System.Security.Claims.ClaimsIdentity;
+                List<int> permissions = new List<int>();
+                System.Security.Claims.Claim claim = claimsIdentity.FindFirst("Permissions");
+                if (claim != null && !string.IsNullOrWhiteSpace(claim.Value))
+                {
+                    permissions = claim.Value.Split(',').Select(x => Convert.ToInt32(x)).ToList();
+                }
+                var editPlan = permissions.Contains((int)Syngenta.SIP.Models.Permissions.EditPlan);
+                var readPlan = permissions.Contains((int)Syngenta.SIP.Models.Permissions.ReadPlan);
+                var editGoal = permissions.Contains((int)Syngenta.SIP.Models.Permissions.EditGoal);
+                var readGoal = permissions.Contains((int)Syngenta.SIP.Models.Permissions.ReadGoal);
+                var editSalary = permissions.Contains((int)Syngenta.SIP.Models.Permissions.EditSalary);
+                var readSalary = permissions.Contains((int)Syngenta.SIP.Models.Permissions.ReadSalary);
+                var generateKey = permissions.Contains((int)Syngenta.SIP.Models.Permissions.GenerateKey);
+                var uploadDocument = permissions.Contains((int)Syngenta.SIP.Models.Permissions.UploadDocument);
+                var UploadPayoutHistoryDocument = permissions.Contains((int)Syngenta.SIP.Models.Permissions.EditPayoutHistory);
+                var DownloadDocument = permissions.Contains((int)Syngenta.SIP.Models.Permissions.ReadPayoutHistory);
+                var editUser = permissions.Contains((int)Syngenta.SIP.Models.Permissions.EditUser);
+                var readUser = permissions.Contains((int)Syngenta.SIP.Models.Permissions.ReadUser);
+            }
+        </div>
+    </div>
+    <ul class="child_nav">
+        @if (editPlan || readPlan)
+        {
+            <li class="@if (controllerName == "Data" && (actionName =="Plan" || actionName == "UploadPlan") ){<text>active</text>}">
+                <a href="@Url.Action("Plan", "Data")">
+                    Plan
+                </a>
+            </li>
+        }
+        @if (editUser)
+        {
+            <li class="@if (controllerName == "Data" && (actionName =="User"|| actionName == "UploadUser") ) {<text>active</text>}">
+                <a href="@Url.Action("User", "Data")">
+                    User
+                </a>
+            </li>
+        }
+        @if (uploadDocument)
+        {
+            <li class="@if (controllerName == "Document" && (actionName =="Document" || actionName == "UploadCountryDocument" || actionName == "UploadUserDocument") ){<text>active</text>}">
+                <a href="@Url.Action("Document", "Document")">
+                    Documents
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+ 

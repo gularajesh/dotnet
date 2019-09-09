@@ -1,0 +1,114 @@
+﻿@model Syngenta.SIP.Models.CountryModel
+@{
+
+        ViewBag.title = "Document";
+        var yearsSelectList = Model.Years.Select(x => new SelectListItem() { Value = x.ToString(), Text = x.ToString() }).ToList();
+}
+@Html.Partial("_LayoutManageData")
+
+@using (Html.BeginForm())
+{
+    <div class="text-center">
+        <div class="row">
+            <div style="margin:50px">
+                <div class="flex">
+                    <span>@Html.DropDownListFor(m => m.Year, yearsSelectList, "Years", new { @id = "year" })</span>  &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+    <div id="divPlan" class="row col-md-12 ">
+        <div class="row col-md-6">
+            @using (Ajax.BeginForm("UploadUserDocument", new { Controller = "Document" }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, HttpMethod = "POST", UpdateTargetId = "divPlan" }, new { enctype = "multipart/form-data" }))
+            {
+                <div class="text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group padding">
+                                <label class="required" for="fileInput">File (Only.pdf and .Zip)</label>
+                                <div class="flex">
+                                    <span style="display:none">@Html.DropDownListFor(m => m.Year, yearsSelectList, "Years", new { @id = "userDocumentYear" })</span>
+                                    <input type="file" id="fileInput" name="document" required
+                                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                    <input type="submit" id="UploadBtn" class="upload_button green_button small document-btn" value="Upload User Documents" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="row col-md-6 DivCountry">
+            @using (Ajax.BeginForm("UploadCountryDocument", new { Controller = "Document" }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, HttpMethod = "POST", UpdateTargetId = "DivCountry" }, new { enctype = "multipart/form-data" }))
+            {
+                <div class="text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group padding">
+                                <label class="required" for="fileInput">File (Only.pdf and .Zip)</label>
+                                <div class="flex">
+                                    <span style="display:none">@Html.DropDownListFor(m => m.Year, yearsSelectList, "Years", new { @id = "countryDocumentYear" })</span>
+                                    <input type="file" id="fileInput" name="Countrydocument" required
+                                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                                    <input type="submit" id="UploadBtn" class="upload_button green_button small document-btn" value="Upload Country Documents" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div id="errorDiv" class="required_v1 text-danger" style="word-wrap:break-word;"></div>
+        <div class="errorMessages" style="text-align:center">
+            @ViewBag.Message
+        </div>
+    </div>
+
+    <div class="row col-md-12 ">
+        <div id="divDownloadUser" class="row col-md-12">
+            @using (Ajax.BeginForm("DownloadUserTrackDocument", new { Controller = "Document" }, new AjaxOptions()
+            {
+                InsertionMode = InsertionMode.ReplaceWith,
+                HttpMethod = "POST",
+                UpdateTargetId = "divDownloadUser"
+            }, new { enctype = "multipart/form-data" }))
+            {
+                <div class="text-center">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group padding">
+                                <br /><br />
+                                <div class="flex">
+                                    <span style="display:none">@Html.DropDownListFor(m => m.Year, yearsSelectList, "Years", new { @id = "reportDocumentYear" })</span>
+                                    <span>@Html.DropDownListFor(m => m.Id, ViewBag.Countries as SelectList, "All countries", new { @id = "countryId" })</span>  &nbsp;  &nbsp;  &nbsp;
+                                    <input type="submit" id="UploadBtn" class="upload_button green_button small" value="View Report" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#userDocumentYear').css('display', 'none');
+        $('#countryDocumentYear').css('display', 'none');
+        $('#reportDocumentYear').css('display', 'none');
+    });
+
+    $('#year').change(function () {
+        $('#userDocumentYear').val($(this).val());
+        $('#countryDocumentYear').val($(this).val());
+        $('#reportDocumentYear').val($(this).val());
+    });
+</script>

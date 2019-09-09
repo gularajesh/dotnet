@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.title = "PayoutHistory";
+}
+@Html.Partial("_LayoutManageData")
+<div id="divPlan">
+    @using (Ajax.BeginForm("UploadPayoutHistory", new { Controller = "Data" }, new AjaxOptions() { InsertionMode = InsertionMode.ReplaceWith, HttpMethod = "POST", UpdateTargetId = "divPlan" }, new { enctype = "multipart/form-data" }))
+    {
+        <div class="text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group padding">
+                        <label class="required" for="fileInput">File (Only.xlsx and less than 5 MB)</label>
+                        <div class="flex">
+                            <input type="file" id="fileInput" name="fileInput" required
+                                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                            <input type="submit" id="UploadBtn" class="upload_button green_button small" value="Upload" />
+                            &nbsp;
+                        </div>
+                        <div class="flex margin_top_20">
+                            @Html.ActionLink("Download", "", "Data", null, new { target = "_base", @class = "upload_button green_button small" })
+                        </div>
+                    </div>
+                </div>
+                <div id="errorDiv" class="required_v1 text-danger" style="word-wrap:break-word;"></div>
+                <div class="errorMessages">
+                    @ViewBag.Message
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

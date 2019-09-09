@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "UploadDocument";
+}
+
+<h2>UploadDocuments</h2>
+
+<div class="text-center">
+    @using (Html.BeginForm("UploadUserDocument", "Document", FormMethod.Post, new  { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group padding">
+                    <label class="required" for="fileInput">File (Only.xlsx and less than 5 MB)</label>
+                    <div class="flex">
+                        <input type="file" name="document" id="zip" /> <br />
+                        <input type="submit" value="Upload" id="UploadBtn" />
+                    </div>
+                </div>
+            </div>
+            <div id="errorDiv" class="required_v1 text-danger" style="word-wrap:break-word;"></div>
+            <div class="errorMessages"></div>
+        </div>
+    }
+</div>
+
+
+@*<script>
+    var isUploading = false;
+    $("#UploadBtn").click(function () {
+        var formData = new FormData();
+        var totalFiles = document.getElementById("uploadDocument").files.length;
+        $("#errorDiv").html('');
+        if (!isUploading) {
+            isUploading = true;
+            $("#errorDiv").html('');
+            $('.holder').show();
+            $('#UploadBtn').prop('value', 'Uploading...');
+        }
+    });
+</script>*@
+
+
